@@ -1,0 +1,16 @@
+version: "3.9"
+name: dev-wooden-interpreter
+
+services:
+  web:
+    build: .
+    container_name: dev-wooden-interpreter-web
+    restart: unless-stopped
+    command: sh app_start.sh 
+    volumes:
+      - ./src:/code/src
+      - ./var/:/var/wooden-app/
+    ports:
+      - 8000:8000
+    # healthcheck:
+    #   test: "curl -f http://localhost:8000/healthcheck || exit 1"
